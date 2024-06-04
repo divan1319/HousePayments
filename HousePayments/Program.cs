@@ -1,9 +1,21 @@
+using HousePayments.Interfaces;
 using HousePayments.Models;
+using HousePayments.Repository;
+using HousePayments.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+//services
+
+builder.Services.AddScoped<IServicesResidentes, ServicesResidente>();
+builder.Services.AddDataProtection();
+
+//repositories
+
+builder.Services.AddScoped<IRepositoryResidente<Residente>, RepositoryResidente>();
 
 //ENTITY FRAMEWORK 
 builder.Services.AddDbContext<HousePaymentsContext>(options =>

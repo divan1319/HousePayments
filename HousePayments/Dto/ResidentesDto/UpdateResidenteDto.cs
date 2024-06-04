@@ -1,32 +1,26 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace HousePayments.Models
+namespace HousePayments.Dto.ResidentesDto
 {
-    public class Residente
+    public class UpdateResidenteDto
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ResidenteId { get; set; }
 
-        [Required]
+
         [StringLength(200)]
         public string Nombre { get; set; }
 
-        [Required]
+        [EmailAddress]
         public string Email { get; set; }
 
-        [Required]
+
         [RegularExpression(@"^[67]\d{7}$", ErrorMessage = "Numero de telefono invalido")]
         public int Telefono { get; set; }
 
-        [Required]
+
         [StringLength(500)]
         public string Password { get; set; }
 
-        [Required]
-        [DefaultValue(true)]
         public bool Estado { get; set; }
     }
 }
