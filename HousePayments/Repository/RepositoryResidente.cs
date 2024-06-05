@@ -18,7 +18,10 @@ namespace HousePayments.Repository
 
         public void DisableResidente(Residente entity)
         {
-            throw new NotImplementedException();
+            
+
+            _context.Residentes.Attach(entity);
+            _context.Residentes.Entry(entity).Property(e => e.Estado).IsModified = true;
         }
 
         public Task<Residente> GetResidente(int id)

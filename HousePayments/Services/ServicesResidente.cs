@@ -41,7 +41,8 @@ namespace HousePayments.Services
                     ResidenteId = residente.ResidenteId,
                     Email = residente.Email,
                     Nombre = residente.Nombre,
-                    Telefono = residente.Telefono
+                    Telefono = residente.Telefono,
+                    Estado = residente.Estado
                 };
 
                 return residenteDto;
@@ -53,9 +54,25 @@ namespace HousePayments.Services
 
         }
 
-        public Task<ResidenteDto> DisableResidente(int id)
+        public async Task<ResidenteDto> DisableResidente(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var estadoRes = new Residente { ResidenteId = id, Estado = false };
+                _residenteRepo.DisableResidente(estadoRes);
+                await _residenteRepo.Save();
+
+                var resDto = new ResidenteDto
+                {
+                     ResidenteId= id,
+                };
+
+                return resDto;
+            }catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
         }
 
         public Task<IEnumerable<ResidenteDto>> GetResidente()

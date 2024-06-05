@@ -27,6 +27,6 @@ namespace HousePayments.Models
 
         [Required]
         [DefaultValue(true)]
-        public bool Estado { get; set; }
+        public bool Estado { get; set; } = true;
     }
 }

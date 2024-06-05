@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HousePayments.Migrations
 {
     [DbContext(typeof(HousePaymentsContext))]
-    [Migration("20240603211714_RefactorMigration")]
-    partial class RefactorMigration
+    [Migration("20240605193154_FirstMigration")]
+    partial class FirstMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -56,13 +56,13 @@ namespace HousePayments.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int>("PoligonoId")
+                    b.Property<int?>("PoligonoId")
                         .HasColumnType("int");
 
                     b.Property<int>("ResidenteId")
                         .HasColumnType("int");
 
-                    b.Property<int>("SendaId")
+                    b.Property<int?>("SendaId")
                         .HasColumnType("int");
 
                     b.HasKey("CasaId");
@@ -129,6 +129,9 @@ namespace HousePayments.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<bool>("Estado")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<string>("Nombre")
                         .IsRequired()
                         .HasMaxLength(200)
@@ -187,9 +190,7 @@ namespace HousePayments.Migrations
                 {
                     b.HasOne("HousePayments.Models.Poligono", "Poligono")
                         .WithMany()
-                        .HasForeignKey("PoligonoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PoligonoId");
 
                     b.HasOne("HousePayments.Models.Residente", "Residente")
                         .WithMany()
@@ -199,9 +200,7 @@ namespace HousePayments.Migrations
 
                     b.HasOne("HousePayments.Models.Senda", "Senda")
                         .WithMany()
-                        .HasForeignKey("SendaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("SendaId");
 
                     b.Navigation("Poligono");
 

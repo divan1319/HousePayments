@@ -17,5 +17,7 @@ namespace HousePayments.Dto.ResidentesDto
         [Required(ErrorMessage = "La contrasena es obligatoria")]
         [MinLength(5,ErrorMessage ="Contrasena muy corta")]
         public string Password { get; set; }
+
+        public bool Estado { get; set; } = true;
     }
 }

@@ -24,5 +24,14 @@ namespace HousePayments.Controllers
 
             return residenteDto == null ? new StatusCodeResult(503) : Ok(residenteDto);
         }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult<ResidenteDto>> DisableRes(int id)
+        {
+            var resDto = await _servicesResidentes.DisableResidente(id);
+
+            return resDto == null ? new StatusCodeResult(503) : Ok(resDto);
+
+        }
     }
 }

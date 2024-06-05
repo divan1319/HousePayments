@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace HousePayments.Dto.ResidentesDto
 {
@@ -20,5 +21,7 @@ namespace HousePayments.Dto.ResidentesDto
 
         [StringLength(500)]
         public string Password { get; set; }
+        
+        public bool Estado { get; set; }
     }
 }

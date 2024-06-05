@@ -7,7 +7,7 @@ using MySql.EntityFrameworkCore.Metadata;
 namespace HousePayments.Migrations
 {
     /// <inheritdoc />
-    public partial class RefactorMigration : Migration
+    public partial class FirstMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -54,7 +54,8 @@ namespace HousePayments.Migrations
                     Nombre = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: false),
                     Email = table.Column<string>(type: "longtext", nullable: false),
                     Telefono = table.Column<int>(type: "int", nullable: false),
-                    Password = table.Column<string>(type: "varchar(500)", maxLength: 500, nullable: false)
+                    Password = table.Column<string>(type: "varchar(500)", maxLength: 500, nullable: false),
+                    Estado = table.Column<bool>(type: "tinyint(1)", nullable: false,defaultValue:true)
                 },
                 constraints: table =>
                 {
@@ -84,8 +85,8 @@ namespace HousePayments.Migrations
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     Nombre = table.Column<string>(type: "longtext", nullable: false),
                     ResidenteId = table.Column<int>(type: "int", nullable: false),
-                    SendaId = table.Column<int>(type: "int", nullable: false),
-                    PoligonoId = table.Column<int>(type: "int", nullable: false)
+                    SendaId = table.Column<int>(type: "int", nullable: true),
+                    PoligonoId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -94,8 +95,7 @@ namespace HousePayments.Migrations
                         name: "FK_Casas_Poligonos_PoligonoId",
                         column: x => x.PoligonoId,
                         principalTable: "Poligonos",
-                        principalColumn: "PoligonoId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "PoligonoId");
                     table.ForeignKey(
                         name: "FK_Casas_Residentes_ResidenteId",
                         column: x => x.ResidenteId,
@@ -106,8 +106,7 @@ namespace HousePayments.Migrations
                         name: "FK_Casas_Sendas_SendaId",
                         column: x => x.SendaId,
                         principalTable: "Sendas",
-                        principalColumn: "SendaId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "SendaId");
                 })
                 .Annotation("MySQL:Charset", "utf8mb4");
 
