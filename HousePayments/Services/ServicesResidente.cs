@@ -75,19 +75,65 @@ namespace HousePayments.Services
             }
         }
 
-        public Task<IEnumerable<ResidenteDto>> GetResidente()
+        public async Task<IEnumerable<ResidenteDto>> GetResidentes()
         {
-            throw new NotImplementedException();
+            var residentes = await _residenteRepo.GetResidentes();
+
+            return residentes.Select(r => new ResidenteDto
+            {
+                ResidenteId = r.ResidenteId,
+                Nombre = r.Nombre,
+                Email = r.Email,
+                Telefono = r.Telefono,
+                Estado = r.Estado,
+            });
         }
 
-        public Task<ResidenteDto> GetResidentes(int id)
+        public async Task<ResidenteDto> GetResidente(int id)
         {
-            throw new NotImplementedException();
+            var residente = await _residenteRepo.GetResidente(id);
+            if(residente != null)
+            {
+                var resDto = new ResidenteDto
+                {
+                    ResidenteId = residente.ResidenteId,
+                    Nombre= residente.Nombre,
+                    Email = residente.Email,
+                    Telefono= residente.Telefono,
+                    Estado  = residente.Estado,
+                };
+
+                return resDto;
+            }
+            return null;
         }
 
-        public Task<ResidenteDto> UpdateResidente(int id, UpdateResidenteDto updateResidenteDto)
+        public async Task<ResidenteDto> UpdateResidente(int id, UpdateResidenteDto updateResidenteDto)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var res = await _residenteRepo.GetResidente(id);
+
+                if (res != null)
+                {
+                    _residenteRepo.UpdateResidente(res);
+                    await _residenteRepo.Save();
+
+                    var resDto = new ResidenteDto
+                    {
+                        Nombre = res.Nombre,
+                        Email = res.Email,
+                        Telefono = res.Telefono,
+                        Estado = res.Estado,
+                    };
+
+                    return resDto;
+                }
+
+                return null;
+            }catch(Exception e) {
+                return null;
+            }
         }
     }
 }

@@ -4,9 +4,9 @@ namespace HousePayments.Interfaces
 {
     public interface IServicesResidentes
     {
-        Task<IEnumerable<ResidenteDto>> GetResidente();
+        Task<IEnumerable<ResidenteDto>> GetResidentes();
 
-        Task<ResidenteDto> GetResidentes(int id);
+        Task<ResidenteDto> GetResidente(int id);
 
         Task<ResidenteDto> CreateResidente(CreateResidenteDto createResidenteDto);
 

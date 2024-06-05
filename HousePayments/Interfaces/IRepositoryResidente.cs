@@ -10,7 +10,7 @@
 
         void DisableResidente(TEntity entity);
 
-        void UpdateResidente();
+        void UpdateResidente(TEntity entity);
 
         Task Save();
     }
