@@ -112,15 +112,23 @@ namespace HousePayments.Services
         {
             try
             {
+                Console.WriteLine(id);
                 var res = await _residenteRepo.GetResidente(id);
+
 
                 if (res != null)
                 {
+                    res.Nombre = updateResidenteDto.Nombre ?? res.Nombre;
+                    res.Email = updateResidenteDto.Email ?? res.Email;
+                    res.Telefono = updateResidenteDto.Telefono ?? res.Telefono;
+                    res.Estado = updateResidenteDto.Estado ?? res.Estado;
+
                     _residenteRepo.UpdateResidente(res);
                     await _residenteRepo.Save();
 
                     var resDto = new ResidenteDto
                     {
+                        ResidenteId = id,
                         Nombre = res.Nombre,
                         Email = res.Email,
                         Telefono = res.Telefono,
@@ -132,6 +140,7 @@ namespace HousePayments.Services
 
                 return null;
             }catch(Exception e) {
+                Console.WriteLine(e.Message);
                 return null;
             }
         }

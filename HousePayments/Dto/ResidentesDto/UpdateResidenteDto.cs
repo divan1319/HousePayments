@@ -8,19 +8,19 @@ namespace HousePayments.Dto.ResidentesDto
 
 
         [StringLength(200)]
-        public string Nombre { get; set; }
+        public string? Nombre { get; set; }
 
         [EmailAddress]
-        public string Email { get; set; }
+        public string? Email { get; set; }
 
 
-        [RegularExpression(@"^[67]\d{7}$", ErrorMessage = "Numero de telefono invalido")]
-        public int Telefono { get; set; }
+        [RegularExpression(@"^[67]\d{7}$", ErrorMessage = "Numero de telefono invalido dto")]
+        public int? Telefono { get; set; }
 
 
         [StringLength(500)]
-        public string Password { get; set; }
+        public string? Password { get; set; }
 
-        public bool Estado { get; set; }
+        public bool? Estado { get; set; }
     }
 }
