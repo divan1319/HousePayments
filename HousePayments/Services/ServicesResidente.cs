@@ -1,4 +1,5 @@
-﻿using HousePayments.Dto.ResidentesDto;
+﻿using FluentResults;
+using HousePayments.Dto.ResidentesDto;
 using HousePayments.Interfaces;
 using HousePayments.Models;
 using Microsoft.AspNetCore.DataProtection;
@@ -34,7 +35,12 @@ namespace HousePayments.Services
                 };
 
                 await _residenteRepo.CreateResidente(residente);
-                await _residenteRepo.Save();
+                var response = await _residenteRepo.Save();
+
+                if (!response)
+                {
+                    return null;
+                }
 
                 var residenteDto = new ResidenteDto
                 {
@@ -48,6 +54,7 @@ namespace HousePayments.Services
                 return residenteDto;
             }
             catch(Exception e) {
+
                 Console.WriteLine(e.Message);
                 return null;
             }

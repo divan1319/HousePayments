@@ -30,9 +30,11 @@ namespace HousePayments.Repository
 
         public async Task<IEnumerable<Residente>> GetResidentes() => await _context.Residentes.ToListAsync();
 
-        public async Task Save()
+        public async Task<Boolean> Save()
         {
             await _context.SaveChangesAsync();
+
+            return true;
         }
 
         public void UpdateResidente(Residente residente)

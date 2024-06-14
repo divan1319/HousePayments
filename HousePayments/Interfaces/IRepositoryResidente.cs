@@ -14,6 +14,6 @@
 
         void UpdateResidente(TEntity entity);
 
-        Task Save();
+        Task<Boolean> Save();
     }
 }
