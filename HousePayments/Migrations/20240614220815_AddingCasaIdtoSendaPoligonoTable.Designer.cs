@@ -3,6 +3,7 @@ using System;
 using HousePayments.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HousePayments.Migrations
 {
     [DbContext(typeof(HousePaymentsContext))]
-    partial class HousePaymentsContextModelSnapshot : ModelSnapshot
+    [Migration("20240614220815_AddingCasaIdtoSendaPoligonoTable")]
+    partial class AddingCasaIdtoSendaPoligonoTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

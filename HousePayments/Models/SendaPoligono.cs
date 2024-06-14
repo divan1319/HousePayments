@@ -9,6 +9,8 @@ namespace HousePayments.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int SendaPoligonoId { get; set; }
 
+        public int CasaId { get; set; }
+
         public int SendaId { get; set; }
 
         public int PoligonoId { get; set; }
@@ -18,6 +20,9 @@ namespace HousePayments.Models
 
         [ForeignKey("PoligonoId")]
         public virtual Poligono Poligono{ get; set; }
+
+        [ForeignKey("CasaId")]
+        public virtual Casa Casa { get; set; }
 
     }
 }
