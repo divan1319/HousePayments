@@ -43,7 +43,7 @@ namespace HousePayments.Repository
             _context.Residentes.Entry(residente).State = EntityState.Modified;
         }
 
-        public async Task<Residente> GetEmail(string email) => await _context.Residentes.FirstOrDefaultAsync(x => x.Email == email);
+        public async Task<Residente> GetEmail(string email) => await _context.Residentes.FirstOrDefaultAsync(x => x.Email == email && x.Estado == true);
         
         
     }
