@@ -8,6 +8,8 @@
 
         Task CreateResidente(TEntity entity);
 
+        Task<TEntity> GetEmail(string email);
+
         void DisableResidente(TEntity entity);
 
         void UpdateResidente(TEntity entity);

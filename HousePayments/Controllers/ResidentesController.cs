@@ -1,5 +1,6 @@
 ﻿using HousePayments.Dto.ResidentesDto;
 using HousePayments.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,7 +17,7 @@ namespace HousePayments.Controllers
         _servicesResidentes = servicesResidentes;
         }
 
-
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult<ResidenteDto>> Create(CreateResidenteDto createResidenteDto) {
 
