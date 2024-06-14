@@ -8,6 +8,7 @@ namespace HousePayments.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ResidentesController : ControllerBase
     {
         private IServicesResidentes _servicesResidentes;
@@ -17,7 +18,6 @@ namespace HousePayments.Controllers
         _servicesResidentes = servicesResidentes;
         }
 
-        [Authorize]
         [HttpPost]
         public async Task<ActionResult<ResidenteDto>> Create(CreateResidenteDto createResidenteDto) {
 
@@ -34,7 +34,7 @@ namespace HousePayments.Controllers
             return resDto == null ? new StatusCodeResult(503) : Ok(resDto);
 
         }
-
+        
         [HttpGet("{id}")]
         public async Task<ActionResult<ResidenteDto>> GetRes(int id) {
             var resDto = await _servicesResidentes.GetResidente(id);
